@@ -29,7 +29,7 @@ export function useSanityDoc<T>(query: string, params?: Record<string, unknown>)
     return () => {
       active = false
     }
-  }, [key, query, params])
+  }, [key, query])
 
   return state
 }

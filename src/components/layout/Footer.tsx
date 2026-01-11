@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import type {SiteSettings} from '../../sanity/types'
 import {Container} from '../ui/Container'
+import logoImage from '../../assets/logo.png'
 
 type FooterProps = {
   siteSettings?: SiteSettings
@@ -10,16 +11,23 @@ type FooterProps = {
 const isExternal = (href: string) => href.startsWith('http')
 
 const FooterShell = styled.footer`
-  margin-top: ${({theme}) => theme.spacing.xxl};
-  padding: ${({theme}) => theme.spacing.xl} 0 ${({theme}) => theme.spacing.lg};
+  padding: clamp(48px, 10vh, 96px) 0 ${({theme}) => theme.spacing.lg};
   background: #ffffff;
   border-top: 1px solid ${({theme}) => theme.colors.border};
 `
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: ${({theme}) => theme.spacing.lg};
+  grid-template-columns: minmax(220px, 1.2fr) repeat(4, minmax(140px, 1fr));
+  gap: ${({theme}) => theme.spacing.xl};
+
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const ColumnTitle = styled.h4`
@@ -42,37 +50,62 @@ const ExternalLink = styled.a`
   font-weight: 500;
 `
 
-const SocialRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({theme}) => theme.spacing.md};
-  margin-top: ${({theme}) => theme.spacing.lg};
-
-  a {
-    color: ${({theme}) => theme.colors.navy};
-    font-weight: 600;
-  }
+const BrandBlock = styled.div`
+  display: grid;
+  gap: ${({theme}) => theme.spacing.sm};
 `
 
-const Brand = styled.div`
-  font-weight: 700;
-  color: ${({theme}) => theme.colors.navy};
-  letter-spacing: -0.02em;
+const BrandLogo = styled.img`
+  width: 140px;
+  height: auto;
+`
+
+
+const Description = styled.p`
+  margin: 0;
+  color: ${({theme}) => theme.colors.muted};
+  line-height: 1.6;
+  max-width: 320px;
+`
+
+const BottomBar = styled.div`
+  border-top: 1px solid ${({theme}) => theme.colors.border};
+  margin-top: ${({theme}) => theme.spacing.xl};
+  padding-top: ${({theme}) => theme.spacing.md};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: ${({theme}) => theme.spacing.md};
+  flex-wrap: wrap;
+`
+
+const BottomLinks = styled.div`
+  display: flex;
+  gap: ${({theme}) => theme.spacing.lg};
+  flex-wrap: wrap;
+
+  a {
+    color: ${({theme}) => theme.colors.muted};
+    font-weight: 500;
+  }
 `
 
 export const Footer = ({siteSettings}: FooterProps) => {
   const columns = siteSettings?.footerColumns ?? []
-  const socials = siteSettings?.socialLinks ?? []
-  const supportingLine = siteSettings?.announcementBar?.text || ''
+  const supportingLine = siteSettings?.footerDescription || siteSettings?.announcementBar?.text || ''
+  const logoUrl = siteSettings?.logoImage?.url || logoImage
+  const bottomLinks = siteSettings?.footerBottomLinks ?? []
+  const copyright =
+    siteSettings?.footerCopyright || `© ${new Date().getFullYear()} ${siteSettings?.brandName || 'Bluebird'}.`
 
   return (
     <FooterShell>
       <Container>
         <Grid>
-          <div>
-            <Brand>{siteSettings?.brandName || siteSettings?.logoText}</Brand>
-            {supportingLine ? <p style={{color: '#4c5f73', maxWidth: 320}}>{supportingLine}</p> : null}
-          </div>
+          <BrandBlock>
+            <BrandLogo src={logoUrl} alt={siteSettings?.brandName || siteSettings?.logoText || 'Logo'} />
+            {supportingLine ? <Description>{supportingLine}</Description> : null}
+          </BrandBlock>
           {columns.map((col) =>
             col?.heading ? (
               <div key={col.heading}>
@@ -94,17 +127,26 @@ export const Footer = ({siteSettings}: FooterProps) => {
             ) : null,
           )}
         </Grid>
-        {socials.length ? (
-          <SocialRow>
-            {socials.map((social) =>
-              social?.href ? (
-                <a key={social.href} href={social.href} target="_blank" rel="noreferrer">
-                  {social.label}
-                </a>
-              ) : null,
-            )}
-          </SocialRow>
-        ) : null}
+        <BottomBar>
+          <div>{copyright}</div>
+          {bottomLinks.length ? (
+            <BottomLinks>
+              {bottomLinks.map((link) =>
+                link?.href ? (
+                  isExternal(link.href) ? (
+                    <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link key={link.href} to={link.href}>
+                      {link.label}
+                    </Link>
+                  )
+                ) : null,
+              )}
+            </BottomLinks>
+          ) : null}
+        </BottomBar>
       </Container>
     </FooterShell>
   )

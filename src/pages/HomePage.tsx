@@ -1,12 +1,11 @@
 import {
-  FAQSection,
-  FeaturesSection,
+  BuiltForSection,
+  DailyBriefSection,
   FinalCTASection,
   HeroSection,
   HowItWorksSection,
   IntegrationsSection,
   SocialProofSection,
-  TestimonialsSection,
 } from '../components/sections'
 import {ErrorState, LoadingState} from '../components/layout/PageState'
 import {HOME_PAGE_QUERY} from '../sanity/queries'
@@ -25,15 +24,17 @@ export const HomePage = () => {
     <>
       <HeroSection content={pageData.hero} />
       <SocialProofSection socialProof={pageData.socialProof} />
-      <FeaturesSection features={pageData.features} />
+      <BuiltForSection content={pageData.builtFor} />
       <HowItWorksSection
         steps={pageData.howItWorks?.steps}
         heading={pageData.howItWorks?.heading}
         subheading={pageData.howItWorks?.subheading}
+        calloutTitle={pageData.howItWorks?.calloutTitle}
+        calloutBody={pageData.howItWorks?.calloutBody}
+        calloutIconKey={pageData.howItWorks?.calloutIconKey}
       />
-      <IntegrationsSection items={pageData.integrations?.items} heading={pageData.integrations?.heading} />
-      <TestimonialsSection items={pageData.testimonials?.items} heading={pageData.testimonials?.heading} />
-      <FAQSection items={pageData.faq?.items} heading={pageData.faq?.heading} />
+      <IntegrationsSection integrations={pageData.integrations} />
+      <DailyBriefSection content={pageData.dailyBrief} />
       <FinalCTASection
         headline={pageData.finalCta?.headline}
         subhead={pageData.finalCta?.subhead}

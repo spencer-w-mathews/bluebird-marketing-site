@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react'
 import styled from 'styled-components'
-import type {SiteSettings} from '../../sanity/types'
+import type {SiteSettings, WhoWeServePage} from '../../sanity/types'
 import {Footer} from './Footer'
 import {Header} from './Header'
 
@@ -8,6 +8,7 @@ type MarketingLayoutProps = {
   children: ReactNode
   siteSettings?: SiteSettings
   loadingSiteSettings?: boolean
+  whoWeServePages?: WhoWeServePage[]
 }
 
 const Main = styled.main`
@@ -15,9 +16,9 @@ const Main = styled.main`
   z-index: 1;
 `
 
-export const MarketingLayout = ({children, siteSettings, loadingSiteSettings}: MarketingLayoutProps) => (
+export const MarketingLayout = ({children, siteSettings, loadingSiteSettings, whoWeServePages}: MarketingLayoutProps) => (
   <>
-    <Header siteSettings={siteSettings} loading={loadingSiteSettings} />
+    <Header siteSettings={siteSettings} loading={loadingSiteSettings} whoWeServePages={whoWeServePages} />
     <Main>{children}</Main>
     <Footer siteSettings={siteSettings} />
   </>

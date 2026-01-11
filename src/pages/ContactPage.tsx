@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {FinalCTASection} from '../components/sections/FinalCTASection'
+import {FinalCTASection} from '../components/sections/homeSections/FinalCTASection'
 import {ErrorState, LoadingState} from '../components/layout/PageState'
 import {Card} from '../components/ui/Card'
 import {Section} from '../components/ui/Section'

@@ -30,13 +30,17 @@ export const theme = {
     outline: '0 0 0 1px rgba(35, 66, 97, 0.08)',
   },
   typography: {
-    fontFamily: '"Space Grotesk", "Inter", system-ui, -apple-system, sans-serif',
+    fontFamily: '"Figtree", sans-serif;',
+    headingFont: '"Figtree", sans-serif;',
     code: '"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace',
-    h1: 'clamp(2.6rem, 5vw, 3.6rem)',
+    h1: 'clamp(2.6rem, 5vw, 4.6rem)',
     h2: 'clamp(2rem, 4vw, 2.9rem)',
     h3: 'clamp(1.4rem, 3vw, 2rem)',
     body: '1rem',
     label: '0.9rem',
+  },
+  background: {
+    bluebirdRadial:   'radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 35%),radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 30%),linear-gradient(140deg, #0f2238 0%, #0b3558 50%, #0f1c2e 100%);',
   },
 } as const
 

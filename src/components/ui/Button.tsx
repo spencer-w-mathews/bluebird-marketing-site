@@ -37,7 +37,7 @@ const BaseButton = styled(MotionButton)<{$variant: ButtonVariant; $fullWidth?: b
   justify-content: center;
   gap: ${({theme}) => theme.spacing.sm};
   padding: 14px 20px;
-  border-radius: ${({theme}) => theme.radii.pill};
+  border-radius: ${({theme}) => theme.radii.md};
   font-weight: 600;
   font-size: 0.95rem;
   border: none;
@@ -47,6 +47,14 @@ const BaseButton = styled(MotionButton)<{$variant: ButtonVariant; $fullWidth?: b
   transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
   ${({$variant}) => variantStyles[$variant]};
 
+  &:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.99);
+  }
+
   &:focus-visible {
     outline: 2px solid ${({theme}) => theme.colors.slate};
     outline-offset: 2px;
@@ -54,18 +62,12 @@ const BaseButton = styled(MotionButton)<{$variant: ButtonVariant; $fullWidth?: b
 `
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  {children, variant = 'primary', fullWidth, ...props},
+  {children, variant = 'primary', fullWidth, as, href, ...props},
   ref,
 ) {
+  const element = as ?? (href ? 'a' : undefined)
   return (
-    <BaseButton
-      ref={ref}
-      $variant={variant}
-      $fullWidth={fullWidth}
-      whileHover={{y: -2, scale: 1.01}}
-      whileTap={{scale: 0.99}}
-      {...props}
-    >
+    <BaseButton ref={ref} as={element} href={href} $variant={variant} $fullWidth={fullWidth} {...props}>
       {children}
     </BaseButton>
   )
