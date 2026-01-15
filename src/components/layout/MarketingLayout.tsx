@@ -14,6 +14,7 @@ type MarketingLayoutProps = {
 const Main = styled.main`
   position: relative;
   z-index: 1;
+  padding-top: 80px;
 `
 
 export const MarketingLayout = ({children, siteSettings, loadingSiteSettings, whoWeServePages}: MarketingLayoutProps) => (

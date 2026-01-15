@@ -21,7 +21,7 @@ const HeroTitle = styled.h1`
   font-size: clamp(2.4rem, 4.4vw, 3.6rem);
   color: ${({theme}) => theme.colors.navy};
   letter-spacing: -0.02em;
-  padding-top: 80px;
+  padding-top: 0px;
 `
 
 const HeroSubhead = styled.p`

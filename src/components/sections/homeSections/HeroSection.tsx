@@ -16,7 +16,7 @@ const HeroSurface = styled.section`
   overflow: hidden;
   border-radius: 0;
   background: ${({theme}) => theme.background.bluebirdRadial};
-  padding: clamp(196px, 12vw, 150px) 0;
+  padding: clamp(66px, 12vw, 60px) 0;
   color: #f7f8fb;
   width: 100%;
 `

@@ -7,6 +7,7 @@ import {PRICING_PAGE_QUERY} from '../sanity/queries'
 import type {PricingPage as PricingPageType, PricingTier} from '../sanity/types'
 import {useSanityDoc} from '../sanity/useSanityDoc'
 import {fallbackPricingPage} from '../sanity/fallbacks'
+import {FAQSection} from '../components/sections/FAQSection'
 
 const Title = styled.h1`
   margin: 0 0 ${({theme}) => theme.spacing.sm};
@@ -114,7 +115,6 @@ const TrustBody = styled.p`
   color: rgba(20, 34, 52, 0.7);
 `
 
-
 const Tier = ({tier}: {tier: PricingTier}) => (
   <TierCard $featured={tier.featured}>
     {tier.eyebrow ? <Eyebrow>{tier.eyebrow}</Eyebrow> : null}
@@ -191,6 +191,7 @@ export const PricingPage = () => {
           </TrustRow>
         </Section>
       ) : null}
+      <FAQSection heading={pageData.faqHeading} items={pageData.faq} />
     </>
   )
 }
