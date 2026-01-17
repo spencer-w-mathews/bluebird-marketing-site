@@ -122,7 +122,7 @@ const IconBadge = styled.div`
   width: 54px;
   height: 54px;
   border-radius: 999px;
-  background: rgba(24, 208, 138, 0.9);
+  background: ${({theme}) => theme.colors.forest};
   color: #ffffff;
   display: grid;
   place-items: center;

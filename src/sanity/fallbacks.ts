@@ -15,7 +15,7 @@ export const fallbackSiteSettings: SiteSettings = {
   logoText: 'Bluebird',
   footerDescription:
     'Clarity across every email and meeting. Professional communication intelligence for teams that need to make decisions.',
-  whoWeServeNav: {label: 'Who We Serve', enabled: true},
+  whoWeServeNav: {label: 'Who We Serve', enabled: false},
   navLinks: [
     {label: 'Product', href: '/product'},
     {label: 'How It Works', href: '/how-it-works'},
@@ -291,126 +291,7 @@ export const fallbackHowItWorksPage: HowItWorksPage = {
   },
 }
 
-export const fallbackWhoWeServePages: WhoWeServePage[] = [
-  {
-    title: 'Professional Services',
-    navLabel: 'Professional Services',
-    slug: {current: 'professional-services'},
-    order: 1,
-    hero: {
-      eyebrow: 'Industry',
-      headline: 'Bluebird for Professional Services',
-      intro:
-        'Bluebird helps consulting, accounting, and advisory firms manage client delivery, engagement coordination, and high-volume communication without replacing professional judgment or existing workflows.',
-    },
-    challenges: {
-      heading: 'Communication challenges',
-      items: [
-        {
-          title: 'Multi-client engagement coordination',
-          description: 'Tracking deliverables, approvals, and communication across simultaneous projects.',
-        },
-        {
-          title: 'Internal resource allocation',
-          description: 'Coordinating staffing, expertise, and availability across engagement teams.',
-        },
-        {
-          title: 'Client responsiveness expectations',
-          description: 'Maintaining communication quality while managing high email volume.',
-        },
-      ],
-    },
-    delivers: {
-      heading: 'What Bluebird delivers',
-      subheading: 'Clarity and control without changing how you work.',
-      items: [
-        'Prioritized visibility across active client engagements',
-        'Reduced risk of missed deliverables or follow-ups',
-        'Clear decision context for every client thread',
-        'Human-reviewed outputs that preserve professional judgment',
-      ],
-    },
-    compliance: {
-      heading: 'Compliance and governance',
-      items: [
-        {title: 'Auditability', description: 'Track activity and approvals with clear decision logs.'},
-        {title: 'Data boundaries', description: 'Only authorized teams access engagement communications.'},
-        {title: 'Retention and review controls', description: 'Support client-specific retention needs.'},
-      ],
-      note:
-        'Bluebird is aligned with professional services data governance standards. Industry-specific compliance requirements should be verified with your implementation team.',
-    },
-    tools: {
-      heading: 'Works with your existing tools',
-      items: [{label: 'Google Workspace'}, {label: 'Microsoft 365'}],
-      note: 'Adjacent system support: project management systems, time tracking platforms, CRM systems.',
-    },
-    cta: {
-      headline: 'Try Bluebird for free',
-      subhead: 'Learn how Bluebird brings clarity to Professional Services communication.',
-      primaryCta: {label: 'Try Bluebird for free', href: '/contact', variant: 'primary'},
-    },
-  },
-  {
-    title: 'Legal',
-    navLabel: 'Legal',
-    slug: {current: 'legal'},
-    order: 2,
-    hero: {
-      eyebrow: 'Industry',
-      headline: 'Bluebird for Legal Teams',
-      intro:
-        'Bluebird keeps legal teams aligned across client communications, deadlines, and approvals without sacrificing professional oversight.',
-    },
-    challenges: {
-      heading: 'Communication challenges',
-      items: [
-        {
-          title: 'Matter coordination',
-          description: 'Synchronizing updates, owners, and client expectations across matters.',
-        },
-        {
-          title: 'Regulatory responsiveness',
-          description: 'Ensuring key requests are surfaced and prioritized promptly.',
-        },
-        {
-          title: 'Approval fidelity',
-          description: 'Maintaining review trails before any external action is taken.',
-        },
-      ],
-    },
-    delivers: {
-      heading: 'What Bluebird delivers',
-      subheading: 'Clarity and control without changing how you work.',
-      items: [
-        'Prioritized queues for urgent client signals',
-        'Decision context consolidated across threads',
-        'Structured follow-up prompts for critical deadlines',
-        'Human-in-the-loop recommendations only',
-      ],
-    },
-    compliance: {
-      heading: 'Compliance and governance',
-      items: [
-        {title: 'Confidentiality boundaries', description: 'Scope access by team and matter.'},
-        {title: 'Audit readiness', description: 'Maintain history of approvals and communications.'},
-        {title: 'Retention controls', description: 'Align with internal document retention policy.'},
-      ],
-      note:
-        'Bluebird supports legal industry governance requirements. Specific regulatory needs should be validated with your security team.',
-    },
-    tools: {
-      heading: 'Works with your existing tools',
-      items: [{label: 'Google Workspace'}, {label: 'Microsoft 365'}],
-      note: 'Adjacent system support: document management, timekeeping, and CRM tools.',
-    },
-    cta: {
-      headline: 'Try Bluebird for free',
-      subhead: 'Learn how Bluebird brings clarity to Legal communication.',
-      primaryCta: {label: 'Try Bluebird for free', href: '/contact', variant: 'primary'},
-    },
-  },
-]
+export const fallbackWhoWeServePages: WhoWeServePage[] = []
 
 export const fallbackPricingPage: PricingPage = {
   heading: 'Simple pricing. Clear boundaries.',

@@ -7,6 +7,7 @@ import {SECURITY_PAGE_QUERY} from '../sanity/queries'
 import type {SecurityPage as SecurityPageType} from '../sanity/types'
 import {useSanityDoc} from '../sanity/useSanityDoc'
 import {fallbackSecurityPage} from '../sanity/fallbacks'
+import type { JSX } from 'react'
 
 const Section = styled.section<{ $tone?: 'dark' | 'light' }>`
   padding: clamp(56px, 10vh, 100px) 0;
@@ -43,6 +44,8 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: ${({theme}) => theme.spacing.lg};
+  padding-top: 6px;
+  overflow: visible;
 `
 
 const PostureCard = styled(Card)`
@@ -54,7 +57,7 @@ const IconBadge = styled.div`
   height: 36px;
   border-radius: 10px;
   background: ${({theme}) => theme.background.bluebirdRadial};
-  color: ${({theme}) => theme.colors.navy};
+  color: #fff;
   display: grid;
   place-items: center;
   margin-bottom: ${({theme}) => theme.spacing.sm};

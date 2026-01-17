@@ -109,7 +109,7 @@ const CalloutIcon = styled.div`
   background: ${({theme}) => theme.background.bluebirdRadial};
   display: grid;
   place-items: center;
-  color: ${({theme}) => theme.colors.navy};
+  color: #fff;
   font-weight: 700;
 `
 

@@ -7,7 +7,6 @@ import {PRODUCT_PAGE_QUERY} from '../sanity/queries'
 import type {ProductPage as ProductPageType} from '../sanity/types'
 import {useSanityDoc} from '../sanity/useSanityDoc'
 import {fallbackProductPage} from '../sanity/fallbacks'
-import dailyWarbleImage from '../assets/DailyWarble.png'
 
 const Section = styled.section<{ $tone?: 'dark' | 'light' }>`
   padding: clamp(56px, 10vh, 100px) 0;
@@ -86,6 +85,19 @@ const Image = styled.img`
   width: 100%;
   border-radius: 12px;
   display: block;
+`
+
+const Placeholder = styled.div<{ $tone?: 'dark' | 'light' }>`
+  height: 240px;
+  border-radius: 12px;
+  background: ${({$tone}) =>
+    $tone === 'dark'
+      ? 'linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.18))'
+      : 'linear-gradient(135deg, rgba(35,66,97,0.08), rgba(35,66,97,0.02))'};
+  display: grid;
+  place-items: center;
+  color: rgba(20, 34, 52, 0.45);
+  font-weight: 600;
 `
 
 const SectionTitle = styled.h2<{ $tone?: 'dark' | 'light' }>`
@@ -216,7 +228,7 @@ export const ProductPage = () => {
                 {pageData.overview.image?.url ? (
                   <Image src={pageData.overview.image.url} alt={pageData.overview.imageAlt || 'Product preview'} />
                 ) : (
-                  <Image src={dailyWarbleImage} alt="Product preview" />
+                  <Placeholder $tone="dark">Product preview</Placeholder>
                 )}
               </ImageFrame>
             </Split>
@@ -245,7 +257,7 @@ export const ProductPage = () => {
                 {pageData.clarity.image?.url ? (
                   <Image src={pageData.clarity.image.url} alt={pageData.clarity.imageAlt || 'Clarity preview'} />
                 ) : (
-                  <Image src={dailyWarbleImage} alt="Clarity preview" />
+                  <Placeholder>Clarity preview</Placeholder>
                 )}
               </ImageFrame>
             </Split>
@@ -274,7 +286,7 @@ export const ProductPage = () => {
                     {item.image?.url ? (
                       <Image src={item.image.url} alt={item.imageAlt || item.title || 'Feature preview'} />
                     ) : (
-                      <Image src={dailyWarbleImage} alt="Feature preview" />
+                      <Placeholder $tone="dark">Feature preview</Placeholder>
                     )}
                   </ImageFrame>
                 </FeatureItem>
@@ -296,10 +308,14 @@ export const ProductPage = () => {
                 ))}
               </Copy>
               <ImageFrame>
-                <Image
-                  src={pageData.dailyBrief.image?.url || dailyWarbleImage}
-                  alt={pageData.dailyBrief.imageAlt || 'Daily brief preview'}
-                />
+                {pageData.dailyBrief.image?.url ? (
+                  <Image
+                    src={pageData.dailyBrief.image.url}
+                    alt={pageData.dailyBrief.imageAlt || 'Daily brief preview'}
+                  />
+                ) : (
+                  <Placeholder>Daily brief preview</Placeholder>
+                )}
               </ImageFrame>
             </Split>
           </Container>

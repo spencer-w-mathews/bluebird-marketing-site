@@ -19,7 +19,7 @@ const Title = styled.h1`
 const Subtitle = styled.p`
   margin: 0;
   max-width: 680px;
-  color: rgba(20, 34, 52, 0.68);
+  color: #3b4f66;
   line-height: 1.7;
 `
 
@@ -30,11 +30,12 @@ const Grid = styled.div`
   align-items: stretch;
 `
 
-const Eyebrow = styled.div`
+const Eyebrow = styled.div<{$featured?: boolean}>`
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(20, 34, 52, 0.55);
+  color: ${({$featured}) => ($featured ? '#c9d8e6' : '#41556b')};
+  font-weight: 600;
 `
 
 const TierName = styled.h3`
@@ -42,11 +43,12 @@ const TierName = styled.h3`
   color: ${({theme}) => theme.colors.navy};
 `
 
-const SubLabel = styled.div`
+const SubLabel = styled.div<{$featured?: boolean}>`
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(20, 34, 52, 0.5);
+  color: ${({$featured}) => ($featured ? '#d4e2ef' : '#4c5f73')};
+  font-weight: 600;
   margin-bottom: ${({theme}) => theme.spacing.sm};
 `
 
@@ -71,12 +73,19 @@ const Price = styled.div<{$featured?: boolean}>`
 
 const Description = styled.p<{$featured?: boolean}>`
   margin: 0 0 ${({theme}) => theme.spacing.sm};
-  color: ${({$featured}) => ($featured ? 'rgba(240, 246, 252, 0.8)' : 'rgba(20, 34, 52, 0.7)')};
+  color: ${({$featured}) => ($featured ? '#eaf1f8' : '#3b4f66')};
+  line-height: 1.6;
+`
+
+const AnnualPrice = styled.p<{$featured?: boolean}>`
+  margin: 0 0 8px;
+  color: ${({$featured}) => ($featured ? '#d9e3ee' : '#3b4f66')};
+  line-height: 1.5;
 `
 
 const Highlight = styled.li<{$featured?: boolean}>`
   margin-bottom: 8px;
-  color: ${({$featured}) => ($featured ? 'rgba(240, 246, 252, 0.78)' : 'rgba(20, 34, 52, 0.7)')};
+  color: ${({$featured}) => ($featured ? '#e6eef7' : '#3b4f66')};
   display: grid;
   grid-template-columns: 18px 1fr;
   gap: ${({theme}) => theme.spacing.xs};
@@ -92,7 +101,8 @@ const HighlightList = styled.ul`
 const Footnote = styled.p<{$featured?: boolean}>`
   margin: ${({theme}) => theme.spacing.md} 0 0;
   font-size: 0.85rem;
-  color: ${({$featured}) => ($featured ? 'rgba(240, 246, 252, 0.7)' : 'rgba(20, 34, 52, 0.55)')};
+  color: ${({$featured}) => ($featured ? '#d9e3ee' : '#4c5f73')};
+  line-height: 1.6;
 `
 
 const TrustRow = styled.div`
@@ -112,20 +122,17 @@ const TrustTitle = styled.h4`
 
 const TrustBody = styled.p`
   margin: 0;
-  color: rgba(20, 34, 52, 0.7);
+  color: #3b4f66;
+  line-height: 1.6;
 `
 
 const Tier = ({tier}: {tier: PricingTier}) => (
   <TierCard $featured={tier.featured}>
-    {tier.eyebrow ? <Eyebrow>{tier.eyebrow}</Eyebrow> : null}
+    {tier.eyebrow ? <Eyebrow $featured={tier.featured}>{tier.eyebrow}</Eyebrow> : null}
     {tier.name ? (tier.featured ? <FeaturedName>{tier.name}</FeaturedName> : <TierName>{tier.name}</TierName>) : null}
-    {tier.subLabel ? <SubLabel>{tier.subLabel}</SubLabel> : null}
+    {tier.subLabel ? <SubLabel $featured={tier.featured}>{tier.subLabel}</SubLabel> : null}
     {tier.priceMonthly ? <Price $featured={tier.featured}>{tier.priceMonthly}</Price> : null}
-    {tier.priceAnnual ? (
-      <p style={{margin: '0 0 8px', color: tier.featured ? 'rgba(240,246,252,0.7)' : '#4c5f73'}}>
-        {tier.priceAnnual}
-      </p>
-    ) : null}
+    {tier.priceAnnual ? <AnnualPrice $featured={tier.featured}>{tier.priceAnnual}</AnnualPrice> : null}
     {tier.description ? <Description $featured={tier.featured}>{tier.description}</Description> : null}
     {tier.highlights?.length ? (
       <HighlightList>
@@ -147,7 +154,7 @@ const Tier = ({tier}: {tier: PricingTier}) => (
         fullWidth
         style={
           tier.featured
-            ? {background: '#2E734C', color: '#0d1626', border: 'none', boxShadow: 'none'}
+            ? {background: '#2E734C', color: '#ffffff', border: 'none', boxShadow: 'none'}
             : {background: '#2f4760', color: '#ffffff', border: 'none', boxShadow: 'none'}
         }
       >
